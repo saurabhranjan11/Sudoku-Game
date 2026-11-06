@@ -1,0 +1,36 @@
+{
+  "project": "Sudoku Web App",
+  "description": "Reusable Copilot prompt templates used to build and enhance the accessible Sudoku game.",
+  "prompts": [
+    {
+      "id": "prompt_1",
+      "title": "Create the Sudoku board HTML",
+      "template": "Generate semantic, accessible HTML for a 9x9 Sudoku board with a difficulty selector, game controls, and descriptive labels for every cell."
+    },
+    {
+      "id": "prompt_2",
+      "title": "Style the Sudoku board",
+      "template": "Add responsive CSS for a square Sudoku board with distinct 3x3 regions, visible keyboard focus states, high-contrast colors, dark mode support, and reduced-motion support."
+    },
+    {
+      "id": "prompt_3",
+      "title": "Generate a playable puzzle",
+      "template": "Implement JavaScript that generates a randomized Sudoku puzzle with a verified unique solution, supports Easy, Medium, and Hard difficulties, and locks the prefilled cells."
+    },
+    {
+      "id": "prompt_4",
+      "title": "Add core gameplay",
+      "template": "Implement move validation, incorrect-cell feedback, a hint system, timer tracking, accessible live status messages, and local-storage save and restore behavior."
+    },
+    {
+      "id": "prompt_5",
+      "title": "Add leaderboard support",
+      "template": "Add a hint button that reveals and locks a valid number, then implement a local-storage top-10 leaderboard containing player names, completion times, difficulty levels, and hint counts."
+    },
+    {
+      "id": "prompt_6",
+      "title": "Add advanced gameplay tools",
+      "template": "Add used-number tracking, accessible Note Mode for candidate numbers, and a visual solver-step animation without changing the current puzzle values."
+    }
+  ]
+}

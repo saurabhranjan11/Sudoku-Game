@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>Sudoku</h1>
+          <p>Fill every row, column, and 3x3 box with the numbers 1 through 9.</p>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" type="button"
+          aria-pressed="false" aria-label="Switch to dark mode">
+          Dark mode
+        </button>
+      </header>
+
+      <section aria-labelledby="game-title">
+        <h2 id="game-title">Sudoku board</h2>
+
+        <form aria-label="Sudoku game">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty" name="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <label for="player-name">Player name</label>
+          <input id="player-name" name="player-name" type="text"
+            maxlength="24" autocomplete="name" placeholder="Enter your name">
+          <p id="timer" aria-label="Elapsed time">Time: 00:00</p>
+
+          <button id="new-game" type="button">New game</button>
+          <button id="hint" type="button">Get hint</button>
+          <button id="note-mode" type="button" aria-pressed="false">Note mode: Off</button>
+          <button id="solver-animation" type="button">Show solver steps</button>
+          <button id="check-solution" type="button">Check solution</button>
+          <fieldset class="number-tools">
+            <legend>Number tools</legend>
+            <div id="number-palette" role="group" aria-label="Number tools">
+              <button type="button" data-number="1">1</button>
+              <button type="button" data-number="2">2</button>
+              <button type="button" data-number="3">3</button>
+              <button type="button" data-number="4">4</button>
+              <button type="button" data-number="5">5</button>
+              <button type="button" data-number="6">6</button>
+              <button type="button" data-number="7">7</button>
+              <button type="button" data-number="8">8</button>
+              <button type="button" data-number="9">9</button>
+            </div>
+          </fieldset>
+          <p id="number-status" role="status" aria-live="polite"></p>
+
+          <table aria-label="Sudoku board">
+            <caption class="sr-only">Sudoku puzzle grid</caption>
+            <tbody>
+              <tr>
+                <td><input aria-label="Row 1, column 1" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 1, column 2" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 1, column 3" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 1, column 4" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 1, column 5" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 1, column 6" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 1, column 7" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 1, column 8" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 1, column 9" inputmode="numeric" maxlength="1"></td>
+              </tr>
+              <tr>
+                <td><input aria-label="Row 2, column 1" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 2, column 2" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 2, column 3" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 2, column 4" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 2, column 5" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 2, column 6" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 2, column 7" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 2, column 8" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 2, column 9" inputmode="numeric" maxlength="1"></td>
+              </tr>
+              <tr>
+                <td><input aria-label="Row 3, column 1" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 3, column 2" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 3, column 3" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 3, column 4" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 3, column 5" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 3, column 6" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 3, column 7" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 3, column 8" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 3, column 9" inputmode="numeric" maxlength="1"></td>
+              </tr>
+              <tr>
+                <td><input aria-label="Row 4, column 1" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 4, column 2" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 4, column 3" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 4, column 4" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 4, column 5" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 4, column 6" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 4, column 7" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 4, column 8" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 4, column 9" inputmode="numeric" maxlength="1"></td>
+              </tr>
+              <tr>
+                <td><input aria-label="Row 5, column 1" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 5, column 2" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 5, column 3" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 5, column 4" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 5, column 5" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 5, column 6" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 5, column 7" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 5, column 8" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 5, column 9" inputmode="numeric" maxlength="1"></td>
+              </tr>
+              <tr>
+                <td><input aria-label="Row 6, column 1" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 6, column 2" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 6, column 3" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 6, column 4" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 6, column 5" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 6, column 6" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 6, column 7" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 6, column 8" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 6, column 9" inputmode="numeric" maxlength="1"></td>
+              </tr>
+              <tr>
+                <td><input aria-label="Row 7, column 1" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 7, column 2" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 7, column 3" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 7, column 4" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 7, column 5" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 7, column 6" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 7, column 7" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 7, column 8" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 7, column 9" inputmode="numeric" maxlength="1"></td>
+              </tr>
+              <tr>
+                <td><input aria-label="Row 8, column 1" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 8, column 2" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 8, column 3" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 8, column 4" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 8, column 5" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 8, column 6" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 8, column 7" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 8, column 8" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 8, column 9" inputmode="numeric" maxlength="1"></td>
+              </tr>
+              <tr>
+                <td><input aria-label="Row 9, column 1" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 9, column 2" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 9, column 3" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 9, column 4" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 9, column 5" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 9, column 6" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 9, column 7" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 9, column 8" inputmode="numeric" maxlength="1"></td>
+                <td><input aria-label="Row 9, column 9" inputmode="numeric" maxlength="1"></td>
+              </tr>
+            </tbody>
+          </table>
+          <p id="game-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <section aria-labelledby="leaderboard-title">
+          <h2 id="leaderboard-title">Top 10 leaderboard</h2>
+          <table class="leaderboard" aria-label="Top 10 Sudoku leaderboard">
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Player</th>
+                <th scope="col">Time</th>
+                <th scope="col">Difficulty</th>
+                <th scope="col">Hints</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </section>
+      </section>
+    </main>
+    <script src="script.js" defer></script>
+  </body>
+</html>
