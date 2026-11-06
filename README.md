@@ -6,8 +6,6 @@ generated puzzles, a PSL (puzzle-solution logic) validator, hints, solver
 animation, notes, a timer, and local browser persistence in one accessible
 interface.
 
-This README is intended to stand on its own: screenshots are optional and are
-not required to understand, run, or test the project.
 
 ## Project overview
 
